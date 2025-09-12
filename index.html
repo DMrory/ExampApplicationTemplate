@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Application Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        fieldset {
+            width: 40%;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        legend {
+            font-weight: bold;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exam Application Portal</h1>
+    
+    <form name="exam" method="POST" onsubmit="return submitForm()">
+        <fieldset>
+            <legend>Trainee Information</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Please fill out this field">
+            
+            <label for="admno">Adm No.:</label>
+            <input type="text" id="admno" name="admno">
+            
+            <label for="department">Department:</label>
+            <select id="department" name="department">
+                <option value="ICT">ICT</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Health Science">Health Science</option>
+            </select>
+            
+            <label for="course">Course:</label>
+            <select id="course" name="course">
+                <option value="ICT Level 6">ICT Level 6</option>
+                <option value="ICT Level 5">ICT Level 5</option>
+                <option value="Computer Science Level 6">Computer Science Level 6</option>
+                <option value="Health Science Level 6">Health Science Level 6</option>
+            </select>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Exam Booking</legend>
+            <label for="examtype">Types of exams:</label>
+            <select id="examtype" name="examtype">
+                <option value="KNEC">KNEC</option>
+            </select>
+            
+            <label for="examseries">Exam Series:</label>
+            <select id="examseries" name="examseries">
+                <option value="MARCH 2025">MARCH 2025</option>
+                <option value="JULY 2025">JULY 2025</option>
+                <option value="NOVEMBER 2024">NOVEMBER 2024</option>
+            </select>
+            
+            <label for="examdate">Date to be done [dd/mm/yyyy]:</label>
+            <input type="text" id="examdate" name="examdate" placeholder="dd/mm/yyyy">
+        </fieldset>
+        
+        <input type="submit" value="SUBMIT">
+    </form>
+    
+    <script>
+        function submitForm() {
+            alert("Application submitted successfully!");
+            return true;
+        }
+    </script>
+</body>
+</html>
