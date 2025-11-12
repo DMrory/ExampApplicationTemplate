@@ -1,101 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Application Portal</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        fieldset {
-            width: 40%;
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 5px;
-        }
-        legend {
-            font-weight: bold;
-        }
-        input[type="text"], select {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0 15px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Application Portal</title>
+
+  <style>
+    /* ===== Global Styles ===== */
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #edf2f7;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    /* ===== Container ===== */
+    .container {
+      background: #fff;
+      width: 90%;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 35px 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Heading ===== */
+    h1 {
+      text-align: center;
+      color: #2d3748;
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
+
+    /* ===== Fieldsets ===== */
+    fieldset {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      padding: 20px;
+      background-color: #fafafa;
+    }
+
+    legend {
+      font-weight: bold;
+      color: #2b6cb0;
+      padding: 0 10px;
+    }
+
+    /* ===== Labels & Inputs ===== */
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      transition: 0.2s ease;
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+      border-color: #3182ce;
+      outline: none;
+      box-shadow: 0 0 5px rgba(49, 130, 206, 0.4);
+    }
+
+    input.valid {
+      border-color: #38a169;
+      box-shadow: 0 0 5px rgba(56, 161, 105, 0.4);
+    }
+
+    input.invalid {
+      border-color: #e53e3e;
+      box-shadow: 0 0 5px rgba(229, 62, 62, 0.4);
+    }
+
+    /* ===== Submit Button ===== */
+    input[type="submit"] {
+      width: 100%;
+      background-color: #3182ce;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2b6cb0;
+    }
+
+    /* ===== Success Message ===== */
+    .success-message {
+      display: none;
+      background-color: #c6f6d5;
+      color: #22543d;
+      border: 1px solid #9ae6b4;
+      padding: 12px;
+      border-radius: 6px;
+      text-align: center;
+      margin-top: 20px;
+      font-weight: 500;
+      animation: fadeMessage 0.5s ease-in-out;
+    }
+
+    @keyframes fadeMessage {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ===== Responsive Design ===== */
+    @media (max-width: 600px) {
+      .container {
+        padding: 25px;
+      }
+      h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
 </head>
 <body>
+
+  <div class="container">
     <h1>Exam Application Portal</h1>
-    
-    <form name="exam" method="POST" onsubmit="return submitForm()">
-        <fieldset>
-            <legend>Trainee Information</legend>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required placeholder="Please fill out this field">
-            
-            <label for="admno">Adm No.:</label>
-            <input type="text" id="admno" name="admno">
-            
-            <label for="department">Department:</label>
-            <select id="department" name="department">
-                <option value="ICT">ICT</option>
-                <option value="Electrical">Electrical</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Health Science">Health Science</option>
-            </select>
-            
-            <label for="course">Course:</label>
-            <select id="course" name="course">
-                <option value="ICT Level 6">ICT Level 6</option>
-                <option value="ICT Level 5">ICT Level 5</option>
-                <option value="Computer Science Level 6">Computer Science Level 6</option>
-                <option value="Health Science Level 6">Health Science Level 6</option>
-            </select>
-        </fieldset>
-        
-        <fieldset>
-            <legend>Exam Booking</legend>
-            <label for="examtype">Types of exams:</label>
-            <select id="examtype" name="examtype">
-                <option value="KNEC">KNEC</option>
-            </select>
-            
-            <label for="examseries">Exam Series:</label>
-            <select id="examseries" name="examseries">
-                <option value="MARCH 2025">MARCH 2025</option>
-                <option value="JULY 2025">JULY 2025</option>
-                <option value="NOVEMBER 2024">NOVEMBER 2024</option>
-            </select>
-            
-            <label for="examdate">Date to be done [dd/mm/yyyy]:</label>
-            <input type="text" id="examdate" name="examdate" placeholder="dd/mm/yyyy">
-        </fieldset>
-        
-        <input type="submit" value="SUBMIT">
+
+    <form id="examForm">
+      <fieldset>
+        <legend>Trainee Information</legend>
+
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+
+        <label for="admno">Admission No.:</label>
+        <input type="text" id="admno" name="admno" required placeholder="e.g. KCC/1234/2024">
+
+        <label for="department">Department:</label>
+        <select id="department" name="department" required>
+          <option value="">-- Select Department --</option>
+          <option value="ICT">ICT</option>
+          <option value="Electrical">Electrical</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Health Science">Health Science</option>
+        </select>
+
+        <label for="course">Course:</label>
+        <select id="course" name="course" required>
+          <option value="">-- Select Course --</option>
+          <option value="ICT Level 6">ICT Level 6</option>
+          <option value="ICT Level 5">ICT Level 5</option>
+          <option value="Computer Science Level 6">Computer Science Level 6</option>
+          <option value="Health Science Level 6">Health Science Level 6</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Exam Booking</legend>
+
+        <label for="examtype">Exam Type:</label>
+        <select id="examtype" name="examtype" required>
+          <option value="">-- Select Exam Type --</option>
+          <option value="KNEC">KNEC</option>
+        </select>
+
+        <label for="examseries">Exam Series:</label>
+        <select id="examseries" name="examseries" required>
+          <option value="">-- Select Exam Series --</option>
+          <option value="MARCH 2025">MARCH 2025</option>
+          <option value="JULY 2025">JULY 2025</option>
+          <option value="NOVEMBER 2024">NOVEMBER 2024</option>
+        </select>
+
+        <label for="examdate">Exam Date (dd/mm/yyyy):</label>
+        <input type="text" id="examdate" name="examdate" placeholder="dd/mm/yyyy" required>
+      </fieldset>
+
+      <input type="submit" value="Submit Application">
+      <div class="success-message" id="successMessage">
+        ✅ Application submitted successfully!
+      </div>
     </form>
-    
-    <script>
-        function submitForm() {
-            alert("Application submitted successfully!");
-            return true;
+  </div>
+
+  <script>
+    const form = document.getElementById("examForm");
+    const successMessage = document.getElementById("successMessage");
+    const inputs = form.querySelectorAll("input[required], select[required]");
+
+    // Live validation feedback
+    inputs.forEach(input => {
+      input.addEventListener("input", () => {
+        if (input.checkValidity()) {
+          input.classList.remove("invalid");
+          input.classList.add("valid");
+        } else {
+          input.classList.remove("valid");
+          input.classList.add("invalid");
         }
-    </script>
+      });
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      // Date format check
+      const examDate = document.getElementById("examdate").value.trim();
+      const datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
+      
+      if (!datePattern.test(examDate)) {
+        alert("⚠️ Please enter the exam date in dd/mm/yyyy format.");
+        document.getElementById("examdate").classList.add("invalid");
+        return false;
+      }
+
+      // Success message
+      successMessage.style.display = "block";
+      form.reset();
+
+      // Remove validation styles
+      inputs.forEach(i => i.classList.remove("valid", "invalid"));
+
+      // Hide message after 3 seconds
+      setTimeout(() => {
+        successMessage.style.display = "none";
+      }, 3000);
+    });
+  </script>
 </body>
 </html>
